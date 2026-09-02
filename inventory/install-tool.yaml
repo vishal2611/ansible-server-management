@@ -1,0 +1,4 @@
+applications_to_install:
+ - nginx
+ - docker.io
+ - default-jdk 

@@ -1,0 +1,22 @@
+---
+- name: Check Application Versions
+  ansible.builtin.command:
+    cmd: "{{ item.version_command }}"
+  loop: "{{ applications }}"
+  register: application_check_results
+  changed_when: false
+  failed_when: false
+
+- name: Build Application Compliance Result
+  ansible.builtin.set_fact:
+    application_results: >-
+      {{
+        application_results | default([]) +
+        [{
+          'name': item.item.name,
+          'status': 'INSTALLED' if item.rc == 0 else 'NOT INSTALLED',
+          'version': (item.stdout if item.stdout | length > 0 else item.stderr)
+            if item.rc == 0 else 'N/A'
+        }]
+      }}
+  loop: "{{ application_check_results.results }}"

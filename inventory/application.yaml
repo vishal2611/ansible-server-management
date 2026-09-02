@@ -1,0 +1,21 @@
+applications:
+  - name: nginx
+    version_command: "nginx -v"
+
+  - name: docker
+    version_command: "docker --version"
+
+  - name: python3
+    version_command: "python3 --version"
+
+  - name: git
+    version_command: "git --version"
+
+  - name: node
+    version_command: "node --version"
+
+  - name: terraform
+    version_command: "terraform version"
+
+  - name: java
+    version_command: "java --version"

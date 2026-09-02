@@ -1,0 +1,7 @@
+---
+- name: Build Application Report
+  ansible.builtin.debug:
+    msg: >-
+      | {{ item.name }} | Status: {{ item.status }} | Version: {{ item.version }}
+  loop: "{{ application_results }}"
+
